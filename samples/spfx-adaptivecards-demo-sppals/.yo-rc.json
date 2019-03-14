@@ -1,0 +1,11 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.7.1",
+    "libraryName": "spfx-adaptivecards-demo-sppals",
+    "libraryId": "c85282b1-6296-4a57-a400-80ae48fc5abf",
+    "packageManager": "npm",
+    "componentType": "webpart"
+  }
+}

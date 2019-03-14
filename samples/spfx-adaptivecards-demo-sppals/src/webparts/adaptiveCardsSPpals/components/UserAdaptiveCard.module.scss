@@ -1,0 +1,7 @@
+@import "../styles/Variables.module.scss";
+
+.userAdaptive{
+    width: 100%;
+    border: 1px solid $adaptive-card-border
+    ;
+}

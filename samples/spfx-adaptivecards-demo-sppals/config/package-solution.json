@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "spfx-adaptivecards-demo-sppals-client-side-solution",
+    "id": "c85282b1-6296-4a57-a400-80ae48fc5abf",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/spfx-adaptivecards-demo-sppals.sppkg"
+  }
+}

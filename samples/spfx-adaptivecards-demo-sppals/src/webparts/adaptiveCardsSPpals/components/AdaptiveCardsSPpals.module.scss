@@ -1,0 +1,12 @@
+@import "~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss";
+@import "../styles/Variables.module.scss";
+
+.adaptiveCardsSPpals {
+  max-width: 420px;
+  background-color: $main-bg-color;
+  text-align: center;
+
+  .titleBar {
+    padding: 12px;
+  }
+}
