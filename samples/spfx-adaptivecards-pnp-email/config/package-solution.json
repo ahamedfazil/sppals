@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "spfx-adaptivecards-pnp-email-client-side-solution",
+    "id": "e303ad3b-15d7-4ba9-8ec1-29bee3f6d9e4",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/spfx-adaptivecards-pnp-email.sppkg"
+  }
+}
