@@ -1,9 +1,12 @@
 const loadersConfig = require("./webpack.loaders.js");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+
+const smp = new SpeedMeasurePlugin();
 
 module.exports = function() {
-  return {
+  return smp.wrap({
     entry: {
       app: ["react-hot-loader/patch", "./src/index.tsx"]
     },
@@ -22,5 +25,5 @@ module.exports = function() {
     module: {
       rules: loadersConfig
     }
-  };
+  });
 };
