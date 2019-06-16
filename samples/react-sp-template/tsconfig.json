@@ -17,7 +17,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true,
-    "strictNullChecks": true
+    // "strictNullChecks": true
   },
   "include": ["./src/**/*"],
   "exclude": [
