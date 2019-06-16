@@ -15,5 +15,7 @@ export const InitialAppState: IAppState = {
     managerId: "",
     memberOf: [],
     directReports: null
-  }
+  },
+  isFetched: false,
+  error: null
 };
