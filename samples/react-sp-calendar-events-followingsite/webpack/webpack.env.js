@@ -3,7 +3,7 @@ const URL = {
     siteUrl: "http://localhost:3000"
   },
   production: {
-    siteUrl: ""
+    siteUrl: "https://fazildev.sharepoint.com/sites/sppals/"
   },
   qa: {
     siteUrl: ""
@@ -28,7 +28,7 @@ const credentials = {
   }
 };
 
-const targetPath = "/SiteAssets";
+const targetPath = "/SiteAssets/followsite/";
 
 module.exports = {
   URL,
