@@ -2,33 +2,6 @@ import pnp from "@pnp/pnpjs";
 import { ICurrentUserState } from "../models/IUser";
 import update from "immutability-helper";
 
-export const getUserByID = (userID: any) => {
-  return pnp.sp.web.siteUsers
-    .getById(userID)
-    .get()
-    .then(response => {
-      return response;
-    });
-};
-
-export async function getUserIDFromPP(pplValue: any[]) {
-  let userID: number = null;
-  if (pplValue.length > 0) {
-    if (pplValue[0].secondaryText !== "") {
-      await pnp.sp.web
-        .ensureUser(pplValue[0].secondaryText)
-        .then((results: any) => {
-          userID = results.data.Id;
-        });
-    } else {
-      await pnp.sp.web.ensureUser(pplValue[0].key).then((results: any) => {
-        userID = results.data.Id;
-      });
-    }
-  }
-  return userID;
-}
-
 export async function getCurrentUser(
   currentUser: ICurrentUserState,
   onGetUserSuccess: (user: ICurrentUserState) => void,

@@ -40,7 +40,7 @@
     "file-loader": "^3.0.1",
     "gulp": "^3.9.1",
     "gulp-prompt": "^1.1.0",
-    "gulp-spsync": "^1.5.6",
+    "gulp-spsave": "^3.1.1",
     "html-webpack-plugin": "^3.0.6",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.7.2",
