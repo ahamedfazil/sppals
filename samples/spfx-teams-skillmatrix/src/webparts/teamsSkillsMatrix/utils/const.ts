@@ -40,5 +40,12 @@ export const CONST = {
         Squad: { Internal_Name: "Squad" }
       }
     }
+  },
+  SkillMatrixColumn :{
+    Capabilities: {
+      key: "capabilities",
+      name: "Capabilities",
+      fieldName: "capability",
+    }
   }
 };

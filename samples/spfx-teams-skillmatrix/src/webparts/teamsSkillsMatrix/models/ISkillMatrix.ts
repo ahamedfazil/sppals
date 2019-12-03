@@ -4,6 +4,7 @@ export interface ISkillMatrix {
     member: any;
     squad: string;
     capability: ICapability[];
+    itemID: string;
 }
 
 export interface ICapability {

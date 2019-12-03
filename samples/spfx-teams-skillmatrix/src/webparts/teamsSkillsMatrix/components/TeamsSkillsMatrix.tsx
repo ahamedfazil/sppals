@@ -1,16 +1,15 @@
 import * as React from "react";
-import { sp, CamlQuery } from "@pnp/sp";
+import { sp } from "@pnp/sp";
 import styles from "./TeamsSkillsMatrix.module.scss";
 import update from "immutability-helper";
 import {
   ITeamsSkillsMatrixProps,
   ITeamsSkillsMatrixState
 } from "../models/ITeamsSkillsMatrix";
-import ChapterNavigation from "./Navigation";
-import { CurrentUser } from "@pnp/sp/src/siteusers";
-import { CONST } from "../utils/const";
+import ChapterNavigation from "./ChapterNavigation";
 import { isArray } from "@pnp/common";
 import { IChapter } from "../models/IChapter";
+import { CONST } from "../utils/Const";
 
 export default class TeamsSkillsMatrix extends React.Component<
   ITeamsSkillsMatrixProps,
@@ -70,12 +69,12 @@ export default class TeamsSkillsMatrix extends React.Component<
   public render(): React.ReactElement<ITeamsSkillsMatrixProps> {
     return (
       <div>
-        Welcome{" "}
-        {this.state.isFetched
-          ? this.state.currentUser["Title"]
-          : "Not fetched yet"}
+        {this.state.isFetched && "Welcome " + this.state.currentUser["Title"]}
         {this.state.isFetched && (
-          <ChapterNavigation chapters={this.state.chapterInfo} />
+          <ChapterNavigation
+            chapters={this.state.chapterInfo}
+            currentUser={this.state.currentUser}
+          />
         )}
       </div>
     );

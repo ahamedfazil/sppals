@@ -8,4 +8,5 @@ export interface IChapter {
 export interface ICapabilities {
     key: number;
     name: string;
+    value: any;
 }
