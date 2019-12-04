@@ -8,8 +8,7 @@ import {
 } from "@microsoft/sp-webpart-base";
 import * as microsoftTeams from "@microsoft/teams-js";
 import * as strings from "TeamsSkillsMatrixWebPartStrings";
-import TeamsSkillsMatrix from "./components/TeamsSkillsMatrix";
-import { ITeamsSkillsMatrixProps } from "./models/ITeamsSkillsMatrix";
+import TeamsSkillsMatrix, { ITeamsSkillsMatrixProps } from "./components/TeamsSkillsMatrix";
 import { sp } from "@pnp/sp";
 
 export interface ITeamsSkillsMatrixWebPartProps {

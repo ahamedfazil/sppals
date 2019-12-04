@@ -12,3 +12,10 @@ export interface ICapability {
     name: string;
     value: number;
 }
+
+export interface IChapter {
+    title: string;
+    members: string[];
+    leads: string[];
+    capabilities: ICapability[];
+}

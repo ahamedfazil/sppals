@@ -2,14 +2,25 @@ import * as React from "react";
 import { sp } from "@pnp/sp";
 import styles from "./TeamsSkillsMatrix.module.scss";
 import update from "immutability-helper";
-import {
-  ITeamsSkillsMatrixProps,
-  ITeamsSkillsMatrixState
-} from "../models/ITeamsSkillsMatrix";
 import ChapterNavigation from "./ChapterNavigation";
 import { isArray } from "@pnp/common";
-import { IChapter } from "../models/IChapter";
 import { CONST } from "../utils/Const";
+import { CurrentUser } from "@pnp/sp/src/siteusers";
+import { IChapter } from "../models/ISkillMatrix";
+
+export interface ITeamsSkillsMatrixProps {
+  title: string;
+  subTitle: string;
+  siteTabTitle: string;
+  description: string;
+}
+
+interface ITeamsSkillsMatrixState {
+  isFetched: boolean;
+  chapterInfo : IChapter[];
+  isError: any;
+  currentUser: CurrentUser;
+}
 
 export default class TeamsSkillsMatrix extends React.Component<
   ITeamsSkillsMatrixProps,

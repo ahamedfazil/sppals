@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Pivot, PivotItem } from "office-ui-fabric-react/lib/Pivot";
-import { IChapter } from "../models/IChapter";
 import { SkillsMatrixGrid } from "./SkillsMatrixGrid";
 import { compareTwoArray } from "../utils/Utilities";
 import { CurrentUser } from "@pnp/sp/src/siteusers";
+import { IChapter } from "../models/ISkillMatrix";
 
 interface IChapterNavigationProps {
   chapters: IChapter[];

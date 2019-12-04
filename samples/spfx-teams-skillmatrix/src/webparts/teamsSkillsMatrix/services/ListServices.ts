@@ -1,14 +1,13 @@
 import { sp, CamlQuery } from "@pnp/sp";
 import { CONST } from "../utils/Const";
 import { isArray } from "@pnp/common";
-import { ISkillMatrix } from "../models/ISkillMatrix";
-import { ICapabilities } from "../models/IChapter";
-import { IColumn } from "office-ui-fabric-react";
+import { ISkillMatrix, ICapability } from "../models/ISkillMatrix";
+import { skillMatrixSetter } from "./GetterSetter";
 
 export const getAllSkillMatrixByChapter = async (
   chapter: string,
-  capabilities: ICapabilities[]
-): Promise<ISkillMatrix[]> => {
+  capabilities: ICapability[]
+): Promise<any[]> => {
   try {
     // Get skill matrix - Fetch SkillMatrix list based on Chapter
     let availableSkillMatrixItems: any[] = [];
@@ -33,9 +32,10 @@ export const getAllSkillMatrixByChapter = async (
       .getByTitle(CONST.Lists.SkillsMatrix.ListName)
       .getItemsByCAMLQuery(queryCondition, "FieldValuesAsText");
 
+    return skillsItems;
     if (skillsItems && isArray(skillsItems)) {
       // Loop through each user and filter by capabitity and push it to Items state
-      let localSkillsMatrix: ISkillMatrix[] = skillMatrixMapper(skillsItems);
+      let localSkillsMatrix: ISkillMatrix[] = skillMatrixSetter(skillsItems);
       localSkillsMatrix.map(skillMatrix => {
         if (skillMatrix.capability) {
           skillMatrix.capability.map(singleCapability => {
@@ -59,53 +59,5 @@ export const getAllSkillMatrixByChapter = async (
   }
 };
 
-const skillMatrixMapper = (skillMatrixResponse: any[]): ISkillMatrix[] => {
-  try {
-    let localSkillsMatrix: ISkillMatrix[] = [];
-    skillMatrixResponse.map((skillsItem: any) => {
-      let skillMatrix: ISkillMatrix = {
-        member: null,
-        title: "",
-        capability: [],
-        squad: "",
-        chapter: "",
-        itemID: null
-      };
-      skillMatrix.itemID = skillsItem["ID"].toString();
-      skillMatrix.member =
-        skillsItem["FieldValuesAsText"][
-          CONST.Lists.SkillsMatrix.Columns.Member.Internal_Name
-        ];
-      skillMatrix.capability = JSON.parse(
-        skillsItem[CONST.Lists.SkillsMatrix.Columns.Capability.Internal_Name]
-      );
-      skillMatrix.chapter =
-        skillsItem["FieldValuesAsText"][
-          CONST.Lists.SkillsMatrix.Columns.Chapter.Internal_Name
-        ];
-      skillMatrix.squad =
-        skillsItem[CONST.Lists.SkillsMatrix.Columns.Squad.Internal_Name];
-      skillMatrix.title =
-        skillsItem[CONST.Lists.SkillsMatrix.Columns.Title.Internal_Name];
-      localSkillsMatrix.push(skillMatrix);
-    });
-    return localSkillsMatrix;
-  } catch (error) {
-    return null;
-  }
-};
 
-export const skillMatixColumnUpdater = (
-  availableColumn: IColumn[],
-  availableSkillMatrix: ISkillMatrix[]
-): IColumn[] => {
-  availableSkillMatrix.map(skillMatrix => {
-    availableColumn.some(item => {
-      if (item.name === skillMatrix.member) {
-        item.key = skillMatrix.itemID;
-        return true;
-      }
-    });
-  });
-  return availableColumn;
-};
+
