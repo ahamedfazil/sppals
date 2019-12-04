@@ -2,7 +2,9 @@ import * as React from "react";
 import {
   IColumn,
   DetailsRow,
-  SelectionMode
+  SelectionMode,
+  IDetailsFooterProps,
+  IDetailsHeaderProps
 } from "office-ui-fabric-react/lib/DetailsList";
 import {
   Label,
@@ -19,6 +21,10 @@ import { ICapabilities } from "../models/IChapter";
 import { CurrentUser } from "@pnp/sp/src/siteusers";
 import { compareTwoArray } from "../utils/Utilities";
 import SkillMatrixPanel from "./SkillMatrixPanel";
+import {
+  getAllSkillMatrixByChapter,
+  skillMatixColumnUpdater
+} from "../services/ListServices";
 
 export interface ISkillMatrixItem {
   key: number;
@@ -69,7 +75,8 @@ export class SkillsMatrixGrid extends React.Component<
         key: CONST.SkillMatrixColumn.Capabilities.key,
         name: CONST.SkillMatrixColumn.Capabilities.name,
         fieldName: CONST.SkillMatrixColumn.Capabilities.fieldName,
-        minWidth: 200,
+        minWidth: 100,
+        currentWidth: 100,
         isResizable: true
       }
     ];
@@ -77,11 +84,11 @@ export class SkillsMatrixGrid extends React.Component<
     this._columns = this._columns.concat(
       this.props.members.map(member => {
         return {
-          key: null,
+          key: member,
           name: member,
           fieldName: member,
           minWidth: 100,
-          maxWidth: 200,
+          maxWidth: 120,
           isResizable: true
         };
       })
@@ -94,7 +101,7 @@ export class SkillsMatrixGrid extends React.Component<
     //   isEditPanelOpened: false
     // };
     this.state = {
-      items: this._allItems,
+      items: [],
       isFetched: false,
       columns: this._columns
     };
@@ -102,81 +109,100 @@ export class SkillsMatrixGrid extends React.Component<
 
   public async componentDidMount() {
     // Get skill matrix - Fetch SkillMatrix list based on Chapter
+    // Get skill matrix - Fetch SkillMatrix list based on Chapter
+    const fetchedSkillsMatrixItems = await getAllSkillMatrixByChapter(
+      this.props.chapter,
+      this.props.capabilities
+    );
+    const updateColumns = skillMatixColumnUpdater(
+      this._columns,
+      fetchedSkillsMatrixItems
+    );
+    console.log(
+      "Faz-Log: componentDidMount -> fetchedSkillsMatrixItems",
+      fetchedSkillsMatrixItems
+    );
+    const updatedState = update(this.state, {
+      items: { $set: fetchedSkillsMatrixItems },
+      isFetched: { $set: true },
+      columns: { $set: updateColumns }
+    });
+    this.setState(updatedState);
 
-    let queryCondition: CamlQuery = {
-      ViewXml: `<View><Query><Where>
-      <Eq>
-                          <FieldRef Name='${CONST.Lists.SkillsMatrix.Columns.Chapter.Internal_Name}' />
-                          <Value Type='Text'>${this.props.chapter}</Value>
-                        </Eq>
-      </Where></Query></View>`
-    };
-    const skillsItems = await sp.web.lists
-      .getByTitle(CONST.Lists.SkillsMatrix.ListName)
-      .getItemsByCAMLQuery(queryCondition, "FieldValuesAsText");
+    // console.log("Faz-Log: componentDidMount -> allITems", fetchedSkillsMatrixItems);
+    // let queryCondition: CamlQuery = {
+    //   ViewXml: `<View><Query><Where>
+    //   <Eq>
+    //                       <FieldRef Name='${CONST.Lists.SkillsMatrix.Columns.Chapter.Internal_Name}' />
+    //                       <Value Type='Text'>${this.props.chapter}</Value>
+    //                     </Eq>
+    //   </Where></Query></View>`
+    // };
+    // const skillsItems = await sp.web.lists
+    //   .getByTitle(CONST.Lists.SkillsMatrix.ListName)
+    //   .getItemsByCAMLQuery(queryCondition, "FieldValuesAsText");
 
-    if (skillsItems && isArray(skillsItems)) {
-      console.log("Faz-Log: componentDidMount -> skillsItems", skillsItems);
-      let localSkillsMatrix: ISkillMatrix[] = [];
-      skillsItems.map(item => {
-        let skillMatrix: ISkillMatrix = {
-          member: null,
-          title: "",
-          capability: [],
-          squad: "",
-          chapter: "",
-          itemID: null
-        };
-        skillMatrix.itemID = item["ID"].toString();
-        skillMatrix.member =
-          item["FieldValuesAsText"][
-            CONST.Lists.SkillsMatrix.Columns.Member.Internal_Name
-          ];
-        skillMatrix.capability = JSON.parse(
-          item[CONST.Lists.SkillsMatrix.Columns.Capability.Internal_Name]
-        );
-        skillMatrix.chapter =
-          item["FieldValuesAsText"][
-            CONST.Lists.SkillsMatrix.Columns.Chapter.Internal_Name
-          ];
-        skillMatrix.squad =
-          item[CONST.Lists.SkillsMatrix.Columns.Squad.Internal_Name];
-        skillMatrix.title =
-          item[CONST.Lists.SkillsMatrix.Columns.Title.Internal_Name];
-        localSkillsMatrix.push(skillMatrix);
-      });
-      // Loop through each user and filter by capabitity and push it to Items state
-      localSkillsMatrix.map(skillMatrix => {
-        if (skillMatrix.capability) {
-          skillMatrix.capability.map(singleCapability => {
-            let _singleItem = this._allItems.filter(
-              item => item["key"] === singleCapability.key
-            );
-            _singleItem[0][skillMatrix.member] = singleCapability.value;
-            this._allItems.some(item => {
-              if (item["key"] === singleCapability.key) {
-                item[skillMatrix.member] = singleCapability.value;
-                return true;
-              }
-            });
-            this._columns.some(item => {
-              console.log("Faz-Log: componentDidMount -> skillMatrix", skillMatrix);
-              if (item.key === null && item.name === skillMatrix.member) {
-                item.key = skillMatrix.itemID;
-                return true;
-              }
-            });
-          });
-        }
-        console.log("Faz-Log: componentDidMount -> this._columns", this._columns);
-      });
-      const fetchedState = update(this.state, {
-        items: { $set: this._allItems },
-        isFetched: { $set: true },
-        columns: { $set: this._columns }
-      });
-      this.setState(fetchedState);
-    }
+    // if (skillsItems && isArray(skillsItems)) {
+    //   console.log("Faz-Log: componentDidMount -> skillsItems", skillsItems);
+    //   let localSkillsMatrix: ISkillMatrix[] = [];
+    //   skillsItems.map(item => {
+    //     let skillMatrix: ISkillMatrix = {
+    //       member: null,
+    //       title: "",
+    //       capability: [],
+    //       squad: "",
+    //       chapter: "",
+    //       itemID: null
+    //     };
+    //     skillMatrix.itemID = item["ID"].toString();
+    //     skillMatrix.member =
+    //       item["FieldValuesAsText"][
+    //         CONST.Lists.SkillsMatrix.Columns.Member.Internal_Name
+    //       ];
+    //     skillMatrix.capability = JSON.parse(
+    //       item[CONST.Lists.SkillsMatrix.Columns.Capability.Internal_Name]
+    //     );
+    //     skillMatrix.chapter =
+    //       item["FieldValuesAsText"][
+    //         CONST.Lists.SkillsMatrix.Columns.Chapter.Internal_Name
+    //       ];
+    //     skillMatrix.squad =
+    //       item[CONST.Lists.SkillsMatrix.Columns.Squad.Internal_Name];
+    //     skillMatrix.title =
+    //       item[CONST.Lists.SkillsMatrix.Columns.Title.Internal_Name];
+    //     localSkillsMatrix.push(skillMatrix);
+    //   });
+    //   // Loop through each user and filter by capabitity and push it to Items state
+    //   localSkillsMatrix.map(skillMatrix => {
+    //     if (skillMatrix.capability) {
+    //       skillMatrix.capability.map(singleCapability => {
+    //         let _singleItem = this._allItems.filter(
+    //           item => item["key"] === singleCapability.key
+    //         );
+    //         _singleItem[0][skillMatrix.member] = singleCapability.value;
+    //         this._allItems.some(item => {
+    //           if (item["key"] === singleCapability.key) {
+    //             item[skillMatrix.member] = singleCapability.value;
+    //             return true;
+    //           }
+    //         });
+    //         this._columns.some(item => {
+    //           if (item.name === skillMatrix.member) {
+    //             item.key = skillMatrix.itemID;
+    //             return true;
+    //           }
+    //         });
+    //       });
+    //     }
+    //   });
+    //   console.log("Faz-Log: componentDidMount -> this._allItems", this._allItems);
+    // }
+    // const fetchedState = update(this.state, {
+    //   items: { $set: this._allItems },
+    //   isFetched: { $set: true },
+    //   columns: { $set: this._columns }
+    // });
+    // this.setState(fetchedState);
   }
 
   public render(): JSX.Element {
@@ -185,12 +211,12 @@ export class SkillsMatrixGrid extends React.Component<
         <Label>{this.props.chapter}</Label>
         <ShimmeredDetailsList
           selectionMode={SelectionMode.none}
-          items={this.state.items}  
+          items={this.state.items}
           columns={this.state.columns}
           shimmerLines={5}
           enableShimmer={!this.state.isFetched}
           onRenderDetailsFooter={footerProps =>
-            this._onRenderSkillsMatrixFooter(footerProps, this.props.isLead)
+            this._onRenderSkillsMatrixFooter(footerProps)
           }
         />
         <SkillMatrixPanel
@@ -203,15 +229,17 @@ export class SkillsMatrixGrid extends React.Component<
   }
 
   private _onRenderSkillsMatrixFooter(
-    detailsFooterProps: any,
-    isLead: boolean
+    detailsHeaderProps: IDetailsFooterProps
   ): JSX.Element {
+    detailsHeaderProps.columns.map(col => (col.isResizable = true));
     return (
       <DetailsRow
-        {...detailsFooterProps}
-        columns={detailsFooterProps.columns}
+        {...detailsHeaderProps}
+        columns={detailsHeaderProps.columns}
         item={{}}
-        itemIndex={-1}
+        itemIndex={
+          detailsHeaderProps.columns ? detailsHeaderProps.columns.length : null
+        }
         onRenderItemColumn={(item, index, column) =>
           this._renderDetailsFooterItemColumn(item, index, column)
         }
@@ -229,13 +257,14 @@ export class SkillsMatrixGrid extends React.Component<
         {(_canUserEdit(column.key) || this.props.isLead) && (
           <Link
             onClick={() => {
-              console.log("Faz-Log: column", column);
               this.setState({
                 isEditPanelOpened: false
               });
             }}
           >
             <Icon iconName="Edit" className="grid-icon" />
+            <br />
+            {column.name + " "}
           </Link>
         )}
       </div>
