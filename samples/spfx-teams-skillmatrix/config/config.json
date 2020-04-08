@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "teams-skills-matrix-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/teamsSkillsMatrix/TeamsSkillsMatrixWebPart.js",
+          "manifest": "./src/webparts/teamsSkillsMatrix/TeamsSkillsMatrixWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "TeamsSkillsMatrixWebPartStrings": "lib/webparts/teamsSkillsMatrix/loc/{locale}.js"
+  }
+}
