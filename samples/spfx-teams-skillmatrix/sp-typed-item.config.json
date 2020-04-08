@@ -1,0 +1,20 @@
+[
+  {
+    "siteUrl": "https://fazildev.sharepoint.com/sites/Dev/",
+    "outputPath": "./Generated",
+    "lists": [
+      {
+        "url": "Lists/SkillsMatrix",
+        "fields": {
+          "excludeHidden": true
+        }
+      },
+      {
+        "url": "Lists/Chapters",
+        "fields": {
+          "excludeHidden": true
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "spfx-teams-skillmatrix-client-side-solution",
+    "id": "35ebe679-6a1b-4f60-8f0f-5e577bfd07af",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "isDomainIsolated": false
+  },
+  "paths": {
+    "zippedPackage": "solution/spfx-teams-skillmatrix.sppkg"
+  }
+}

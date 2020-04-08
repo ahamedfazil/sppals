@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "spfx-user-hierarchy-sppals-client-side-solution",
+    "id": "bbc79942-ad8c-4a64-8c7e-6016051371f4",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "isDomainIsolated": false
+  },
+  "paths": {
+    "zippedPackage": "solution/spfx-user-hierarchy-sppals.sppkg"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "list-form-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/listForm/ListFormWebPart.js",
+          "manifest": "./src/webparts/listForm/ListFormWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ListFormStrings": "lib/webparts/ListForm/components/loc/{locale}.js",
+    "FormFieldStrings": "lib/webparts/ListForm/components/formFields/loc/{locale}.js",
+    "ListFormWebPartStrings": "lib/webparts/listForm/loc/{locale}.js",
+    "servicesStrings": "lib/common/services/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
+  }
+}

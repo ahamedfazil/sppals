@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "user-hierarchy-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/userHierarchy/UserHierarchyWebPart.js",
+          "manifest": "./src/webparts/userHierarchy/UserHierarchyWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "UserHierarchyWebPartStrings": "lib/webparts/userHierarchy/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
+  }
+}
