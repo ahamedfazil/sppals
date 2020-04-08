@@ -14,7 +14,7 @@ import {
 import { IListFormService } from "./IListFormService";
 import { _Item } from "@pnp/sp/items/types";
 import { IAttachmentFileInfo } from "@pnp/sp/attachments";
-import { b64ToBlob } from "../Utils/Utilities";
+import { b64ToBlob } from "../utils/Utilities";
 
 export class ListFormService implements IListFormService {
   private spHttpClient: SPHttpClient;

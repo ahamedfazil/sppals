@@ -34,7 +34,7 @@ import { ListService } from "../../common/services/ListService";
 import { ControlMode } from "../../common/datatypes/ControlMode";
 
 import { sp } from "@pnp/sp/presets/all";
-import { CONST } from "../../common/Utils/Const";
+import { CONST } from "../../common/utils/Const";
 
 export default class ListFormWebPart extends BaseClientSideWebPart<
   IListFormWebPartProps

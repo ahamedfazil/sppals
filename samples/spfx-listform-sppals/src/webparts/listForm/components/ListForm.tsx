@@ -29,9 +29,9 @@ import ReactFileReader from "react-file-reader";
 import update from "immutability-helper";
 import SPFieldFilesList from "./formFields/SPFieldFilesList";
 import { IFileField } from "../../../common/services/datatypes/RenderListData";
-import { CONST } from "../../../common/Utils/Const";
+import { CONST } from "../../../common/utils/Const";
 import DialogBlocking, { IDialogBlocking } from "./formFields/DialogBlocking";
-import { delay } from "../../../common/Utils/Utilities";
+import { delay } from "../../../common/utils/Utilities";
 
 export default class ListForm extends React.Component<
   IListFormProps,

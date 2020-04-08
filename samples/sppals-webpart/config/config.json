@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "sp-pals-articles-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/spPalsArticles/SpPalsArticlesWebPart.js",
+          "manifest": "./src/webparts/spPalsArticles/SpPalsArticlesWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SpPalsArticlesWebPartStrings": "lib/webparts/spPalsArticles/loc/{locale}.js"
+  }
+}
