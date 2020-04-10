@@ -24,3 +24,7 @@ gulp test - TODO
 gulp serve - TODO
 gulp bundle - TODO
 gulp package-solution - TODO
+
+### Solutions used in the following articles - 
+To Send an email from user account using Graph API (including attachments)
+https://www.sharepointpals.com/post/how-to-send-an-email-using-graph-api-with-attachments-in-spfx-webpart
