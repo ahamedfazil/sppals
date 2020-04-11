@@ -14,7 +14,7 @@ export default class SpPalsArticles extends React.Component<ISpPalsArticlesProps
               <div className={styles.articleContent}>
                 <p className={styles.subTitle}>Send Email From User Account Using Graph API.</p>
                 <EmailForm sppalsService={this.props.sppalService} />
-                <a className={styles.learnMore} href="https://aka.ms/spfx">
+                <a className={styles.learnMore} href="https://www.sharepointpals.com/post/how-to-send-an-email-using-graph-api-with-attachments-in-spfx-webpart/">
                   <span>Learn more</span>
                 </a>
               </div>

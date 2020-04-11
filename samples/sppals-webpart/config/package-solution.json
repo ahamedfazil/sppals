@@ -3,7 +3,7 @@
   "solution": {
     "name": "sppals-webpart-client-side-solution",
     "id": "c05e4cb9-bda2-450b-ba19-a724aba06421",
-    "version": "1.0.0.0",
+    "version": "2.0.0.0",
     "includeClientSideAssets": true,
     "isDomainIsolated": false
   },
