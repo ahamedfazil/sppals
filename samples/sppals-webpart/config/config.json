@@ -9,10 +9,19 @@
           "manifest": "./src/webparts/spPalsArticles/SpPalsArticlesWebPart.manifest.json"
         }
       ]
+    },
+    "my-web-part-two-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/myWebPartTwo/MyWebPartTwoWebPart.js",
+          "manifest": "./src/webparts/myWebPartTwo/MyWebPartTwoWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "SpPalsArticlesWebPartStrings": "lib/webparts/spPalsArticles/loc/{locale}.js"
+    "SpPalsArticlesWebPartStrings": "lib/webparts/spPalsArticles/loc/{locale}.js",
+    "MyWebPartTwoWebPartStrings": "lib/webparts/myWebPartTwo/loc/{locale}.js"
   }
 }
