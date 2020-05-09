@@ -17,11 +17,20 @@
           "manifest": "./src/webparts/myWebPartTwo/MyWebPartTwoWebPart.manifest.json"
         }
       ]
+    },
+    "my-application-insights-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/myApplicationInsights/MyApplicationInsightsWebPart.js",
+          "manifest": "./src/webparts/myApplicationInsights/MyApplicationInsightsWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
     "SpPalsArticlesWebPartStrings": "lib/webparts/spPalsArticles/loc/{locale}.js",
-    "MyWebPartTwoWebPartStrings": "lib/webparts/myWebPartTwo/loc/{locale}.js"
+    "MyWebPartTwoWebPartStrings": "lib/webparts/myWebPartTwo/loc/{locale}.js",
+    "MyApplicationInsightsWebPartStrings": "lib/webparts/myApplicationInsights/loc/{locale}.js"
   }
 }
