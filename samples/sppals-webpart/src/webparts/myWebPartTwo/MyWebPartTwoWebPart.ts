@@ -15,7 +15,12 @@ export interface IMyWebPartTwoWebPartProps {
 
 export default class MyWebPartTwoWebPart extends BaseClientSideWebPart<IMyWebPartTwoWebPartProps> {
 
+
   public render(): void {
+    console.clear();
+    console.log("Faz-Log: MyWebPartTwoWebPart -> render -> Admin_SiteURL", Admin_SiteURL);
+
+
     this.domElement.innerHTML = `
       <div class="${ styles.myWebPartTwo}">
     <div class="${ styles.container}">
