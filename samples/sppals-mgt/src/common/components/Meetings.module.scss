@@ -1,0 +1,27 @@
+.Meeting {
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 3.2px 7.2px 0 var(--callout-shadow-color, rgba(0, 0, 0, 0.132)),
+    0 0.6px 1.8px 0 var(--callout-shadow-secondary-color, rgba(0, 0, 0, 0.108));
+}
+
+.Details {
+  margin: 18px 0 8px 0;
+}
+
+.DetailsItem {
+  flex: 1;
+}
+
+.DetailsItemContent {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.Footer {
+  margin: 8px 0 8px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
