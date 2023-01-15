@@ -1,0 +1,26 @@
+{
+  "name": "nextjs-b2c-msal-auth",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@azure/msal-browser": "2.31.0",
+    "@azure/msal-react": "1.4.10",
+    "@next/font": "13.1.0",
+    "@nextui-org/react": "1.0.0-beta.11",
+    "@types/node": "18.11.17",
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.10",
+    "eslint": "8.30.0",
+    "eslint-config-next": "13.1.0",
+    "next": "13.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.4"
+  }
+}
