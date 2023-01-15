@@ -21,7 +21,7 @@
     "@pnp/sp": "2.0.2",
     "@pnp/spfx-controls-react": "1.16.0",
     "immutability-helper": "3.0.1",
-    "moment": "2.24.0",
+    "moment": "2.29.4",
     "@microsoft/sp-core-library": "1.10.0",
     "@microsoft/sp-property-pane": "1.10.0",
     "@microsoft/sp-webpart-base": "1.10.0",
